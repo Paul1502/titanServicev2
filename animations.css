@@ -1,5 +1,3 @@
-/* Zusätzliche Animationen */
-
 /* Glitch Effekt */
 .glitch {
     position: relative;
@@ -101,22 +99,18 @@
     }
 }
 
-/* Shine Effect */
+/* Shine Effekt */
 @keyframes shine {
     to {
         left: 100%;
     }
 }
 
-/* Pulsate Animation for Audio Player */
+/* Pulsate Animation für Audio Player */
 @keyframes pulsate {
     0% { box-shadow: 0 0 10px #66fcf1; }
     50% { box-shadow: 0 0 20px #45a29e; }
     100% { box-shadow: 0 0 10px #66fcf1; }
 }
 
-/* Slide Up Animation */
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(50px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+/* Weitere Animationen können hier hinzugefügt werden */
