@@ -163,3 +163,42 @@ function animateVisualizer() {
         x += barWidth + 1;
     }
 }
+
+// Parallax-Effekt für Hero Section
+window.addEventListener('scroll', function() {
+    const scrollPosition = window.pageYOffset;
+    const heroContent = document.querySelector('.hero-content');
+    if(heroContent){
+        heroContent.style.transform = 'translate(-50%, calc(-50% + ' + scrollPosition * 0.5 + 'px))';
+    }
+});
+
+// Scroll-Effekte für Elemente
+const observerOptions = {
+    threshold: 0.1
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+        }
+    });
+}, observerOptions);
+
+const elements = document.querySelectorAll('.produkt, .content, .kontakt-item');
+elements.forEach(element => {
+    observer.observe(element);
+});
+
+// Smooth Scroll für interne Links
+const links = document.querySelectorAll('a[href^="#"]');
+for (const link of links) {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetID = this.getAttribute('href');
+        document.querySelector(targetID).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+}
