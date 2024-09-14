@@ -99,6 +99,7 @@ header nav ul li a:hover::after {
     font-weight: bold;
     box-shadow: 0 0 10px #66fcf1;
     animation: glow 2s infinite alternate;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 .join-discord:hover {
@@ -487,12 +488,19 @@ header nav ul li a:hover::after {
     z-index: 1000;
     width: 350px;
     box-shadow: 0 0 20px #66fcf1;
-    animation: slideUp 1s ease;
+    animation: slideUp 1s ease, pulsate 2s infinite;
+    transition: transform 0.3s ease;
 }
 
 @keyframes slideUp {
     from { opacity: 0; transform: translateY(50px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulsate {
+    0% { box-shadow: 0 0 10px #66fcf1; }
+    50% { box-shadow: 0 0 20px #45a29e; }
+    100% { box-shadow: 0 0 10px #66fcf1; }
 }
 
 .audio-controls {
@@ -515,7 +523,7 @@ header nav ul li a:hover::after {
     transform: scale(1.2);
 }
 
-#volume-slider {
+#audio-player #volume-slider {
     width: 120px;
     accent-color: #66fcf1;
 }
@@ -535,6 +543,7 @@ header nav ul li a:hover::after {
     margin-top: 15px;
     background: #0b0c10;
     border-radius: 10px;
+    animation: animateVisualizer 1s linear infinite;
 }
 
 /* Playlist */
@@ -558,7 +567,7 @@ header nav ul li a:hover::after {
     color: #c5c6c7;
     cursor: pointer;
     border-bottom: 1px solid #1f2833;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #playlist-list li:hover {
