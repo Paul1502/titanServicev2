@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Titan-Service - Innovative Cyber Security Lösungen</title>
+    <meta name="description" content="Erleben Sie die modernsten Cyber Security Lösungen mit atemberaubenden Animationen und Effekten.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Schriftarten -->
+    <link rel="preload" href="fonts/Orbitron.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Maus-Effekte -->
+    <div id="mouse-trail"></div>
+
+    <!-- Header mit "Join Discord" Button -->
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="Titan-Service Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#produkte">Produkte</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+                <li><a href="https://discord.gg/your-invite-link" target="_blank" class="join-discord">Join Discord</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section mit animiertem Hintergrund -->
+    <section id="hero">
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero-content">
+            <h1>Titan-Service</h1>
+            <p>Grenzenlose Cyber Security Innovationen</p>
+        </div>
+    </section>
+
+    <!-- Produktpräsentation -->
+    <section id="produkte">
+        <div class="produkt">
+            <img src="images/discord-cloner.png" alt="Discord Cloner">
+            <div class="produkt-info">
+                <h2>Discord Cloner</h2>
+                <p>Duplizieren Sie Ihren Discord-Server mühelos mit unserem hochentwickelten Cloner.</p>
+            </div>
+        </div>
+        <div class="produkt">
+            <img src="images/server-cloner.png" alt="Discord Server Cloner">
+            <div class="produkt-info">
+                <h2>Discord Server Cloner</h2>
+                <p>Sichern und klonen Sie gesamte Serverstrukturen mit nur einem Klick.</p>
+            </div>
+        </div>
+        <!-- Weitere Produkte können hier hinzugefügt werden -->
+    </section>
+
+    <!-- Audio Player -->
+    <div id="audio-player">
+        <div class="audio-controls">
+            <button id="prev-btn">⏮</button>
+            <button id="play-btn">▶️</button>
+            <button id="next-btn">⏭</button>
+            <input type="range" id="volume-slider" min="0" max="1" step="0.01">
+        </div>
+        <div id="song-info">Songname</div>
+        <canvas id="audio-visualizer"></canvas>
+    </div>
+
+    <!-- Footer -->
+    <footer id="kontakt">
+        <p>&copy; 2023 Titan-Service. Alle Rechte vorbehalten.</p>
+        <p>
+            <a href="#">Impressum</a> |
+            <a href="#">Datenschutz</a>
+        </p>
+    </footer>
+
+    <!-- Skripte -->
+    <script src="main.js"></script>
+</body>
+</html>
