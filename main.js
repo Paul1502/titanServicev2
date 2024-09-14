@@ -27,6 +27,8 @@ fetch('audioFiles.json')
             createPlaylist();
             // Initialisieren der Audio Visualizer
             setupAudioVisualizer();
+            // Wiederherstellen des Audio-Status
+            restoreAudioState();
         } else {
             console.error('Keine Audiodateien gefunden.');
         }
@@ -171,9 +173,9 @@ function saveAudioState() {
     sessionStorage.setItem('currentTime', audio.currentTime);
 }
 
-// Wiederherstellen des Audio-Status beim Laden der Seite
-window.addEventListener('load', () => {
-    if (audioFiles.length > 0 && sessionStorage.getItem('currentSongIndex') !== null) {
+// Wiederherstellen des Audio-Status
+function restoreAudioState() {
+    if (sessionStorage.getItem('currentSongIndex') !== null) {
         currentSongIndex = parseInt(sessionStorage.getItem('currentSongIndex'));
         audio.src = 'audios/' + audioFiles[currentSongIndex];
         songInfo.textContent = getSongName(audioFiles[currentSongIndex]);
@@ -186,10 +188,8 @@ window.addEventListener('load', () => {
             playBtn.innerHTML = '<i class="fas fa-pause"></i>';
             isPlaying = true;
         }
-
-        setupAudioVisualizer();
     }
-});
+}
 
 // Hintergrund-Effekte verbessern
 function initializeBackgroundEffects(canvas) {
