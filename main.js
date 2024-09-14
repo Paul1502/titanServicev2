@@ -24,8 +24,8 @@ window.addEventListener('mousemove', function(event){
 function Particle(x, y, directionX, directionY, size, color){
     this.x = x;
     this.y = y;
-    this.directionX = directionX * 0.3; // Geschwindigkeit verlangsamt
-    this.directionY = directionY * 0.3; // Geschwindigkeit verlangsamt
+    this.directionX = directionX * 0.3;
+    this.directionY = directionY * 0.3;
     this.size = size;
     this.color = color;
 }
@@ -76,7 +76,7 @@ Particle.prototype.update = function(){
 function init(){
     particlesArray = [];
     let numberOfParticles = (canvas.height * canvas.width) / 9000;
-    for (let i = 0; i < numberOfParticles * 1.5; i++){ // Weniger Partikel für bessere Performance
+    for (let i = 0; i < numberOfParticles * 1.5; i++){
         let size = (Math.random() * 3) + 1;
         let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
         let y = (Math.random() * ((innerHeight - size *2) - (size * 2)) + size * 2);
@@ -144,7 +144,7 @@ canvas.height = innerHeight;
 init();
 animate();
 
-// Scroll-Effekte für Produkte
+// Scroll-Effekte für Elemente
 const observerOptions = {
     threshold: 0.1
 };
@@ -157,114 +157,19 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-const products = document.querySelectorAll('.produkt');
-products.forEach(product => {
-    observer.observe(product);
+const elements = document.querySelectorAll('.produkt, .content, .kontakt-item');
+elements.forEach(element => {
+    observer.observe(element);
 });
 
-// Audio Player
-const playBtn = document.getElementById('play-btn');
-const prevBtn = document.getElementById('prev-btn');
-const nextBtn = document.getElementById('next-btn');
-const volumeSlider = document.getElementById('volume-slider');
-const songInfo = document.getElementById('song-info');
-const visualizerCanvas = document.getElementById('audio-visualizer');
-const visualizerCtx = visualizerCanvas.getContext('2d');
-
-let audioFiles = [
-    'song1.mp3',
-    'song2.mp3',
-    // Fügen Sie weitere Songs hinzu
-];
-let currentSongIndex = 0;
-let isPlaying = false;
-let audio = new Audio();
-audio.src = 'audios/' + audioFiles[currentSongIndex];
-songInfo.textContent = audioFiles[currentSongIndex].replace('.mp3', '');
-
-playBtn.addEventListener('click', () => {
-    if(isPlaying){
-        audio.pause();
-        playBtn.innerHTML = '<i class="icon-play"></i>';
-    } else {
-        audio.play();
-        playBtn.innerHTML = '<i class="icon-pause"></i>';
-        if(!audioContext){
-            setupAudioVisualizer();
-        }
-    }
-    isPlaying = !isPlaying;
-});
-
-prevBtn.addEventListener('click', () => {
-    currentSongIndex = (currentSongIndex - 1 + audioFiles.length) % audioFiles.length;
-    audio.src = 'audios/' + audioFiles[currentSongIndex];
-    songInfo.textContent = audioFiles[currentSongIndex].replace('.mp3', '');
-    if(isPlaying){
-        audio.play();
-    }
-});
-
-nextBtn.addEventListener('click', () => {
-    currentSongIndex = (currentSongIndex + 1) % audioFiles.length;
-    audio.src = 'audios/' + audioFiles[currentSongIndex];
-    songInfo.textContent = audioFiles[currentSongIndex].replace('.mp3', '');
-    if(isPlaying){
-        audio.play();
-    }
-});
-
-volumeSlider.addEventListener('input', (e) => {
-    audio.volume = e.target.value;
-});
-
-audio.addEventListener('ended', () => {
-    nextBtn.click();
-});
-
-// Audio Visualizer
-let audioContext;
-let analyser;
-let dataArray;
-let bufferLength;
-
-function setupAudioVisualizer(){
-    audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    const source = audioContext.createMediaElementSource(audio);
-    analyser = audioContext.createAnalyser();
-    source.connect(analyser);
-    analyser.connect(audioContext.destination);
-
-    analyser.fftSize = 512;
-    bufferLength = analyser.frequencyBinCount;
-    dataArray = new Uint8Array(bufferLength);
-
-    visualizerCanvas.width = visualizerCanvas.offsetWidth;
-    visualizerCanvas.height = visualizerCanvas.offsetHeight;
-
-    animateVisualizer();
-}
-
-function animateVisualizer(){
-    requestAnimationFrame(animateVisualizer);
-    analyser.getByteFrequencyData(dataArray);
-
-    visualizerCtx.clearRect(0, 0, visualizerCanvas.width, visualizerCanvas.height);
-
-    const barWidth = (visualizerCanvas.width / bufferLength) * 2.5;
-    let barHeight;
-    let x = 0;
-
-    for(let i = 0; i < bufferLength; i++){
-        barHeight = dataArray[i] / 1.5;
-
-        const r = barHeight + (25 * (i/bufferLength));
-        const g = 250 * (i/bufferLength);
-        const b = 50;
-
-        visualizerCtx.fillStyle = `rgb(${r},${g},${b})`;
-        visualizerCtx.fillRect(x, visualizerCanvas.height - barHeight, barWidth, barHeight);
-
-        x += barWidth + 1;
-    }
+// Smooth Scroll für interne Links
+const links = document.querySelectorAll('a[href^="#"]');
+for (const link of links) {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetID = this.getAttribute('href');
+        document.querySelector(targetID).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
 }
