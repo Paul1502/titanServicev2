@@ -1,0 +1,48 @@
+/* Zusätzliche Animationen */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Glitch Effekt */
+.glitch {
+    position: relative;
+    color: #fff;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+}
+
+.glitch::before {
+    animation: glitchTop 2s infinite;
+    clip: rect(0, 900px, 0, 0);
+}
+
+.glitch::after {
+    animation: glitchBottom 2s infinite;
+    clip: rect(0, 900px, 0, 0);
+}
+
+/* Weitere Animationen können hier hinzugefügt werden */
