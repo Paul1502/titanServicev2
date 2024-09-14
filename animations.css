@@ -1,27 +1,5 @@
 /* Zusätzliche Animationen */
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-100px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
 /* Glitch Effekt */
 .glitch {
     position: relative;
@@ -45,4 +23,96 @@
     clip: rect(0, 900px, 0, 0);
 }
 
-/* Weitere Animationen können hier hinzugefügt werden */
+@keyframes glitchTop {
+    0% {
+        clip: rect(42px, 9999px, 44px, 0);
+        transform: translate(0);
+    }
+    20% {
+        clip: rect(85px, 9999px, 90px, 0);
+        transform: translate(-5px, -10px);
+    }
+    40% {
+        clip: rect(20px, 9999px, 25px, 0);
+        transform: translate(5px, 10px);
+    }
+    60% {
+        clip: rect(85px, 9999px, 90px, 0);
+        transform: translate(-5px, -10px);
+    }
+    80% {
+        clip: rect(42px, 9999px, 44px, 0);
+        transform: translate(0);
+    }
+    100% {
+        clip: rect(20px, 9999px, 25px, 0);
+        transform: translate(0);
+    }
+}
+
+@keyframes glitchBottom {
+    0% {
+        clip: rect(85px, 9999px, 90px, 0);
+        transform: translate(0);
+    }
+    20% {
+        clip: rect(20px, 9999px, 25px, 0);
+        transform: translate(5px, 10px);
+    }
+    40% {
+        clip: rect(85px, 9999px, 90px, 0);
+        transform: translate(-5px, -10px);
+    }
+    60% {
+        clip: rect(20px, 9999px, 25px, 0);
+        transform: translate(5px, 10px);
+    }
+    80% {
+        clip: rect(85px, 9999px, 90px, 0);
+        transform: translate(0);
+    }
+    100% {
+        clip: rect(20px, 9999px, 25px, 0);
+        transform: translate(0);
+    }
+}
+
+/* Fade In Up Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Slide In Animation */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Shine Effect */
+@keyframes shine {
+    to {
+        left: 100%;
+    }
+}
+
+/* Pulsate Animation for Audio Player */
+@keyframes pulsate {
+    0% { box-shadow: 0 0 10px #66fcf1; }
+    50% { box-shadow: 0 0 20px #45a29e; }
+    100% { box-shadow: 0 0 10px #66fcf1; }
+}
+
+/* Additional Animations can be added here */
