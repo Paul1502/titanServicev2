@@ -115,4 +115,8 @@
     100% { box-shadow: 0 0 10px #66fcf1; }
 }
 
-/* Additional Animations can be added here */
+/* Slide Up Animation */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
