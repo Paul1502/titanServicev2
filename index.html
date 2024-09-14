@@ -5,8 +5,9 @@
     <title>Titan-Service - Innovative Cyber Security Lösungen</title>
     <meta name="description" content="Erleben Sie die modernsten Cyber Security Lösungen mit atemberaubenden Animationen und Effekten.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Schriftarten -->
-    <link rel="preload" href="fonts/Orbitron.woff2" as="font" type="font/woff2" crossorigin>
+    <!-- Schriftarten und Icons -->
+    <link rel="stylesheet" href="fonts.css">
+    <!-- Hauptstil -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -47,6 +48,7 @@
             <div class="produkt-info">
                 <h2>Discord Cloner</h2>
                 <p>Duplizieren Sie Ihren Discord-Server mühelos mit unserem hochentwickelten Cloner.</p>
+                <a href="#" class="produkt-button">Jetzt entdecken</a>
             </div>
         </div>
         <!-- Produkt 2 -->
@@ -57,6 +59,7 @@
             <div class="produkt-info">
                 <h2>Discord Server Cloner</h2>
                 <p>Sichern und klonen Sie gesamte Serverstrukturen mit nur einem Klick.</p>
+                <a href="#" class="produkt-button">Jetzt entdecken</a>
             </div>
         </div>
         <!-- Weitere Produkte -->
@@ -65,9 +68,9 @@
     <!-- Audio Player -->
     <div id="audio-player">
         <div class="audio-controls">
-            <button id="prev-btn">⏮</button>
-            <button id="play-btn">▶️</button>
-            <button id="next-btn">⏭</button>
+            <button id="prev-btn" class="audio-btn"><i class="icon-previous"></i></button>
+            <button id="play-btn" class="audio-btn"><i class="icon-play"></i></button>
+            <button id="next-btn" class="audio-btn"><i class="icon-next"></i></button>
             <input type="range" id="volume-slider" min="0" max="1" step="0.01">
         </div>
         <div id="song-info">Songname</div>
@@ -78,9 +81,9 @@
     <footer id="kontakt">
         <div class="footer-content">
             <div class="social-media">
-                <a href="#"><img src="images/icon-facebook.png" alt="Facebook"></a>
-                <a href="#"><img src="images/icon-twitter.png" alt="Twitter"></a>
-                <a href="#"><img src="images/icon-instagram.png" alt="Instagram"></a>
+                <a href="#"><i class="icon-facebook"></i></a>
+                <a href="#"><i class="icon-twitter"></i></a>
+                <a href="#"><i class="icon-instagram"></i></a>
             </div>
             <p>&copy; 2023 Titan-Service. Alle Rechte vorbehalten.</p>
             <p>
@@ -92,5 +95,6 @@
 
     <!-- Skripte -->
     <script src="main.js"></script>
+    <script src="animations.js"></script>
 </body>
 </html>
