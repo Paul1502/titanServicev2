@@ -1,116 +1,49 @@
-/* Glitch Effekt */
-.glitch {
-    position: relative;
-    color: #fff;
+// Parallax-Effekt für Hero Section
+window.addEventListener('scroll', function() {
+    const scrollPosition = window.pageYOffset;
+    const heroContent = document.querySelector('.hero-content');
+    heroContent.style.transform = 'translate(-50%, calc(-50% + ' + scrollPosition * 0.5 + 'px))';
+});
+
+// Hover-Effekte für Buttons
+const buttons = document.querySelectorAll('.cta-button, .produkt-button');
+buttons.forEach(button => {
+    button.addEventListener('mouseover', () => {
+        button.classList.add('hovered');
+    });
+    button.addEventListener('mouseout', () => {
+        button.classList.remove('hovered');
+    });
+});
+
+// Glitch-Effekt bei Hover auf Überschriften
+const glitchHeaders = document.querySelectorAll('.glitch');
+glitchHeaders.forEach(header => {
+    header.addEventListener('mouseover', () => {
+        header.classList.add('glitch-active');
+    });
+    header.addEventListener('mouseout', () => {
+        header.classList.remove('glitch-active');
+    });
+});
+
+// Hintergrundanimationen initialisieren
+const produkteCanvas = document.getElementById('produkte-canvas');
+const kontaktCanvas = document.getElementById('kontakt-canvas');
+
+if (produkteCanvas) {
+    // Initialisiere Partikel für Produkte-Seite
+    initCanvasAnimation(produkteCanvas);
 }
 
-.glitch::before,
-.glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
+if (kontaktCanvas) {
+    // Initialisiere Partikel für Kontakt-Seite
+    initCanvasAnimation(kontaktCanvas);
 }
 
-.glitch::before {
-    animation: glitchTop 2s infinite;
-    clip: rect(0, 900px, 0, 0);
+// Funktion zur Initialisierung der Hintergrundanimation
+function initCanvasAnimation(canvas) {
+    const ctx = canvas.getContext('2d');
+    // Hier können Sie den Code für die Hintergrundanimation hinzufügen
+    // Zum Beispiel Partikel oder andere visuelle Effekte
 }
-
-.glitch::after {
-    animation: glitchBottom 2s infinite;
-    clip: rect(0, 900px, 0, 0);
-}
-
-@keyframes glitchTop {
-    0% {
-        clip: rect(42px, 9999px, 44px, 0);
-        transform: translate(0);
-    }
-    20% {
-        clip: rect(85px, 9999px, 90px, 0);
-        transform: translate(-5px, -10px);
-    }
-    40% {
-        clip: rect(20px, 9999px, 25px, 0);
-        transform: translate(5px, 10px);
-    }
-    60% {
-        clip: rect(85px, 9999px, 90px, 0);
-        transform: translate(-5px, -10px);
-    }
-    80% {
-        clip: rect(42px, 9999px, 44px, 0);
-        transform: translate(0);
-    }
-    100% {
-        clip: rect(20px, 9999px, 25px, 0);
-        transform: translate(0);
-    }
-}
-
-@keyframes glitchBottom {
-    0% {
-        clip: rect(85px, 9999px, 90px, 0);
-        transform: translate(0);
-    }
-    20% {
-        clip: rect(20px, 9999px, 25px, 0);
-        transform: translate(5px, 10px);
-    }
-    40% {
-        clip: rect(85px, 9999px, 90px, 0);
-        transform: translate(-5px, -10px);
-    }
-    60% {
-        clip: rect(20px, 9999px, 25px, 0);
-        transform: translate(5px, 10px);
-    }
-    80% {
-        clip: rect(85px, 9999px, 90px, 0);
-        transform: translate(0);
-    }
-    100% {
-        clip: rect(20px, 9999px, 25px, 0);
-        transform: translate(0);
-    }
-}
-
-/* Fade In Up Animation */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Slide In Animation */
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-100px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-/* Shine Effekt */
-@keyframes shine {
-    to {
-        left: 100%;
-    }
-}
-
-/* Pulsate Animation für Audio Player */
-@keyframes pulsate {
-    0% { box-shadow: 0 0 10px #66fcf1; }
-    50% { box-shadow: 0 0 20px #45a29e; }
-    100% { box-shadow: 0 0 10px #66fcf1; }
-}
-
-/* Weitere Animationen können hier hinzugefügt werden */
