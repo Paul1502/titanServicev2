@@ -283,9 +283,18 @@ header nav ul li a:hover::after {
 
 /* Produkte Sektion */
 #produkte {
+    position: relative;
     padding: 100px 5%;
     background-color: #1f2833;
     color: #c5c6c7;
+    overflow: hidden;
+}
+
+#produkte-canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
 .section-title {
@@ -401,10 +410,19 @@ header nav ul li a:hover::after {
 
 /* Kontakt Sektion */
 #kontakt-sektion {
+    position: relative;
     padding: 100px 5%;
     background-color: #1f2833;
     color: #c5c6c7;
     text-align: center;
+    overflow: hidden;
+}
+
+#kontakt-canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
 .kontakt-methoden {
@@ -449,6 +467,68 @@ header nav ul li a:hover::after {
 
 .kontakt-item p a:hover {
     text-decoration: underline;
+}
+
+/* Audio Player */
+#audio-player {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background: rgba(15, 20, 25, 0.95);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    width: 350px;
+    box-shadow: 0 0 20px #66fcf1;
+    animation: slideUp 1s ease;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.audio-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.audio-btn {
+    background: none;
+    border: none;
+    color: #66fcf1;
+    font-size: 28px;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.audio-btn:hover {
+    color: #45a29e;
+    transform: scale(1.2);
+}
+
+#volume-slider {
+    width: 120px;
+    accent-color: #66fcf1;
+}
+
+#audio-player #song-info {
+    margin-top: 15px;
+    font-size: 1rem;
+    text-align: center;
+    color: #c5c6c7;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+#audio-visualizer {
+    width: 100%;
+    height: 80px;
+    margin-top: 15px;
+    background: #0b0c10;
+    border-radius: 10px;
 }
 
 /* Footer */
@@ -511,5 +591,11 @@ footer {
     .kontakt-methoden {
         flex-direction: column;
         align-items: center;
+    }
+
+    #audio-player {
+        width: 90%;
+        left: 5%;
+        bottom: 20px;
     }
 }
