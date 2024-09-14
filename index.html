@@ -4,77 +4,75 @@
     <meta charset="UTF-8">
     <title>TITAN SERVICE - Cybersecurity</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Einbindung von Tailwind CSS für schnelles Styling -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Einbindung von Custom CSS -->
+    <!-- Einbindung von CSS -->
     <link rel="stylesheet" href="style.css">
-    <!-- Favicon -->
-    <link rel="icon" href="assets/images/logo.png" type="image/png">
+    <!-- Einbindung von Font Awesome für Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p6hq0C1R+ev2y4c/SLg5j+43w8BpARv37aDZABrQfr6s00uv0xlSNVXth0U0K6MroE1A8VyR0Xd6B8U/yyYV4w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body class="bg-black text-green-400 font-mono overflow-hidden">
-    <!-- Canvas für WebGL-Hintergrund -->
-    <canvas id="webgl-background"></canvas>
+<body>
+    <!-- Animierter Hintergrund -->
+    <div id="animated-bg"></div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50">
-        <ul class="flex justify-center space-x-8 p-4 bg-black bg-opacity-50">
-            <li><a href="#home" class="hover:text-white transition duration-300">Start</a></li>
-            <li><a href="#about" class="hover:text-white transition duration-300">Über uns</a></li>
-            <li><a href="#products" class="hover:text-white transition duration-300">Produkte</a></li>
-            <li><a href="#contact" class="hover:text-white transition duration-300">Kontakt</a></li>
+    <nav>
+        <ul>
+            <li><a href="#home">Start</a></li>
+            <li><a href="#about">Über uns</a></li>
+            <li><a href="#products">Produkte</a></li>
+            <li><a href="#contact">Kontakt</a></li>
         </ul>
     </nav>
 
-    <!-- Hero Section mit animiertem Logo -->
-    <section id="home" class="h-screen flex items-center justify-center relative">
-        <h1 id="logo" class="text-6xl md:text-8xl lg:text-9xl z-10">TITAN SERVICE</h1>
+    <!-- Hero Section -->
+    <section id="home" class="section">
+        <h1 class="logo">TITAN SERVICE</h1>
     </section>
 
-    <!-- Über uns Sektion -->
-    <section id="about" class="min-h-screen flex items-center justify-center p-10 bg-black bg-opacity-75">
-        <div class="max-w-4xl text-center">
-            <h2 class="text-4xl mb-8">Über uns</h2>
-            <p class="text-xl">
-                Unser Ziel ist es, automatisierte Pentesting- und Cybersecurity-Tools zu erstellen, um anderen zu helfen und das Leben sicherer und einfacher zu machen.
-            </p>
+    <!-- Über uns Section -->
+    <section id="about" class="section">
+        <h2>Über uns</h2>
+        <p>Unser Ziel ist es, automatisierte Pentesting- und Cybersecurity-Tools zu erstellen, um anderen zu helfen und das Leben sicherer und einfacher zu machen.</p>
+    </section>
+
+    <!-- Produkte Section -->
+    <section id="products" class="section">
+        <h2>Produkte</h2>
+        <!-- Produkte hier hinzufügen -->
+        <div class="product">
+            <h3>Produkt 1</h3>
+            <p>Beschreibung des Produkts 1.</p>
         </div>
+        <!-- Weitere Produkte -->
     </section>
 
-    <!-- Produktsektion -->
-    <section id="products" class="min-h-screen flex items-center justify-center p-10">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Produkt 1 -->
-            <div class="product bg-black bg-opacity-75 p-6 rounded-lg transform hover:scale-105 transition duration-500">
-                <h3 class="text-2xl mb-4">Produkt 1</h3>
-                <p>Beschreibung des Produkts 1.</p>
-            </div>
-            <!-- Weitere Produkte hinzufügen -->
-        </div>
+    <!-- Kontakt Section -->
+    <section id="contact" class="section">
+        <h2>Kontakt</h2>
+        <p>Sie können uns erreichen über:</p>
+        <ul>
+            <li>Email: <a href="mailto:titan150208@icloud.com">titan150208@icloud.com</a></li>
+            <li>Telegram: <a href="https://t.me/IZBMA">@IZBMA</a></li>
+            <li>Discord: <a href="https://discord.gg/IHRE-DISCORD-EINLADUNG">TITAN SERVICE Discord Channel</a></li>
+        </ul>
+        <!-- Button zum Beitreten des Discord-Channels -->
+        <a href="https://discord.gg/IHRE-DISCORD-EINLADUNG" class="discord-button">Discord beitreten</a>
     </section>
 
-    <!-- Kontakt Sektion -->
-    <section id="contact" class="min-h-screen flex items-center justify-center p-10 bg-black bg-opacity-75">
-        <div class="max-w-2xl text-center">
-            <h2 class="text-4xl mb-8">Kontakt</h2>
-            <p class="text-xl mb-4">Sie können uns erreichen über:</p>
-            <ul class="text-lg space-y-2">
-                <li>Email: <a href="mailto:titan150208@icloud.com" class="text-green-400 hover:text-white transition duration-300">titan150208@icloud.com</a></li>
-                <li>Telegram: <a href="https://t.me/IZBMA" class="text-green-400 hover:text-white transition duration-300">@IZBMA</a></li>
-                <li>Discord: <a href="https://discord.gg/IHRE-DISCORD-EINLADUNG" class="text-green-400 hover:text-white transition duration-300">TITAN SERVICE Discord Channel</a></li>
-            </ul>
-            <!-- Button zum Beitreten des Discord-Channels -->
-            <a href="https://discord.gg/IHRE-DISCORD-EINLADUNG" class="mt-8 inline-block bg-green-400 text-black px-6 py-3 rounded-full hover:bg-white transition duration-300">Discord beitreten</a>
-        </div>
-    </section>
-
-    <!-- Audio Steuerung -->
-    <div id="audio-control" class="fixed bottom-5 right-5 z-50 cursor-pointer">
-        <img src="assets/images/sound-on.png" alt="Audio Control" class="w-12 h-12">
+    <!-- Audio Control -->
+    <div id="audio-control">
+        <i class="fas fa-volume-up"></i>
     </div>
 
     <!-- Skripte -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r136/three.min.js"></script>
+    <!-- Einbindung von jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Einbindung von Particles.js -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <!-- Einbindung von GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <!-- Einbindung von ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+    <!-- Hauptskript -->
     <script src="script.js"></script>
 </body>
 </html>
