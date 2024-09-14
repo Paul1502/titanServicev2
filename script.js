@@ -1,114 +1,105 @@
-// Particles.js Konfiguration
-particlesJS('animated-bg', {
-  "particles": {
-    "number": {
-      "value": 150
-    },
-    "color": {
-      "value": "#00ff00"
-    },
-    "shape": {
-      "type": "circle"
-    },
-    "opacity": {
-      "value": 0.7,
-      "random": true
-    },
-    "size": {
-      "value": 3,
-      "random": true
-    },
-    "line_linked": {
-      "enable": true,
-      "distance": 100,
-      "color": "#00ff00",
-      "opacity": 0.4,
-      "width": 1
-    },
-    "move": {
-      "enable": true,
-      "speed": 2,
-      "direction": "none",
-      "random": true,
-      "out_mode": "out"
+// Matrix-Hintergrund
+const canvas = document.getElementById('matrix');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const katakana = 'アカサタナハマヤラワ';
+const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const nums = '0123456789';
+
+const alphabet = katakana + latin + nums;
+
+const fontSize = 16;
+const columns = canvas.width / fontSize;
+
+const rainDrops = [];
+
+for (let x = 0; x < columns; x++) {
+    rainDrops[x] = 1;
+}
+
+const draw = () => {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = '#00ff00';
+    ctx.font = fontSize + 'px monospace';
+
+    for (let i = 0; i < rainDrops.length; i++) {
+        const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+        ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+
+        if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            rainDrops[i] = 0;
+        }
+        rainDrops[i]++;
     }
-  },
-  "interactivity": {
-    "events": {
-      "onhover": {
-        "enable": true,
-        "mode": ["grab", "bubble"]
-      },
-      "onclick": {
-        "enable": true,
-        "mode": "push"
-      }
-    }
-  }
+};
+
+setInterval(draw, 30);
+
+// Anpassung der Canvas-Größe bei Fensteränderung
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 });
 
 // GSAP Animationen
 gsap.registerPlugin(ScrollTrigger);
 
-// Logo Animation
-gsap.from(".logo", {
+// Hero Section Animation
+gsap.from('.logo', {
+    duration: 2,
     opacity: 0,
-    duration: 1.5,
-    y: -100,
-    ease: "bounce.out"
+    scale: 0.5,
+    ease: 'elastic.out(1, 0.5)'
 });
 
-// Sections Fade-in beim Scrollen
+// Sections Animation
 gsap.utils.toArray('.section').forEach(section => {
     gsap.from(section, {
         scrollTrigger: {
             trigger: section,
-            start: 'top 80%',
-            toggleActions: 'play none none none'
+            start: 'top 80%'
         },
         opacity: 0,
         y: 50,
-        duration: 1
+        duration: 1.5,
+        ease: 'power2.out'
     });
 });
 
-// Produkte Animation
-gsap.from('.product', {
+// Service Cards Animation
+gsap.from('.service-card', {
     scrollTrigger: {
-        trigger: '.product',
-        start: 'top 85%',
-        toggleActions: 'play none none none'
+        trigger: '.services-container',
+        start: 'top 80%'
     },
     opacity: 0,
     y: 50,
     duration: 1,
-    stagger: 0.3
+    stagger: 0.3,
+    ease: 'power2.out'
 });
 
-// Audio Control
-const audioControl = document.getElementById('audio-control');
-const audioIcon = audioControl.querySelector('i');
-const audio = new Audio('audio/background-music.mp3');
-audio.loop = true;
-let audioPlaying = false;
-
-audioControl.addEventListener('click', () => {
-    if (audioPlaying) {
-        audio.pause();
-        audioIcon.classList.remove('fa-volume-up');
-        audioIcon.classList.add('fa-volume-mute');
-    } else {
-        audio.play();
-        audioIcon.classList.remove('fa-volume-mute');
-        audioIcon.classList.add('fa-volume-up');
-    }
-    audioPlaying = !audioPlaying;
+// Navigation Links Hover Effekt
+document.querySelectorAll('nav ul li a').forEach(link => {
+    link.addEventListener('mouseover', () => {
+        gsap.to(link, { duration: 0.3, color: '#ffffff' });
+    });
+    link.addEventListener('mouseout', () => {
+        gsap.to(link, { duration: 0.3, color: '#00ff00' });
+    });
 });
 
-// Hover Soundeffekt
-document.querySelectorAll('a, button, .discord-button').forEach(element => {
-    element.addEventListener('mouseenter', () => {
-        const hoverSound = new Audio('audio/hover-sound.mp3');
-        hoverSound.play();
+// Service Cards Hover Effekt
+document.querySelectorAll('.service-card').forEach(card => {
+    card.addEventListener('mouseover', () => {
+        gsap.to(card, { duration: 0.3, scale: 1.05 });
+    });
+    card.addEventListener('mouseout', () => {
+        gsap.to(card, { duration: 0.3, scale: 1 });
     });
 });
