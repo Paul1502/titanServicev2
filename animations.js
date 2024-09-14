@@ -7,18 +7,6 @@ window.addEventListener('scroll', function() {
     heroContent.style.transform = 'translate(-50%, calc(-50% + ' + scrollPosition * 0.5 + 'px))';
 });
 
-// Smooth Scroll für interne Links
-const links = document.querySelectorAll('a[href^="#"]');
-for (const link of links) {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetID = this.getAttribute('href');
-        document.querySelector(targetID).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
-}
-
 // Hover-Effekte für Buttons
 const buttons = document.querySelectorAll('.cta-button, .produkt-button');
 buttons.forEach(button => {
@@ -27,5 +15,16 @@ buttons.forEach(button => {
     });
     button.addEventListener('mouseout', () => {
         button.classList.remove('hovered');
+    });
+});
+
+// Glitch-Effekt bei Hover auf Überschriften
+const glitchHeaders = document.querySelectorAll('.glitch');
+glitchHeaders.forEach(header => {
+    header.addEventListener('mouseover', () => {
+        header.classList.add('glitch-active');
+    });
+    header.addEventListener('mouseout', () => {
+        header.classList.remove('glitch-active');
     });
 });
