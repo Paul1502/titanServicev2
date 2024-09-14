@@ -163,7 +163,6 @@ products.forEach(product => {
 });
 
 // Audio Player
-const audioPlayer = document.getElementById('audio-player');
 const playBtn = document.getElementById('play-btn');
 const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
@@ -186,10 +185,10 @@ songInfo.textContent = audioFiles[currentSongIndex].replace('.mp3', '');
 playBtn.addEventListener('click', () => {
     if(isPlaying){
         audio.pause();
-        playBtn.textContent = '▶️';
+        playBtn.innerHTML = '<i class="icon-play"></i>';
     } else {
         audio.play();
-        playBtn.textContent = '⏸';
+        playBtn.innerHTML = '<i class="icon-pause"></i>';
         if(!audioContext){
             setupAudioVisualizer();
         }
