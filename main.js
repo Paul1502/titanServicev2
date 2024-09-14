@@ -85,6 +85,9 @@ playBtn.addEventListener('click', () => {
     } else {
         audio.play();
         playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        if (!audioContext) {
+            setupAudioVisualizer();
+        }
     }
     isPlaying = !isPlaying;
     saveAudioState();
@@ -209,7 +212,7 @@ function initializeBackgroundEffects(canvas) {
     const mouse = {
         x: null,
         y: null,
-        radius: 100 // Reduzierter Radius für kleinere Barriere
+        radius: 50 // Reduzierter Radius für kleinere Barriere
     };
 
     window.addEventListener('mousemove', function(event) {
