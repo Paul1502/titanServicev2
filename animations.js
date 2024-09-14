@@ -1,5 +1,3 @@
-// Zusätzliche Animationen mit GSAP
-
 // Parallax-Effekt für Hero Section
 window.addEventListener('scroll', function() {
     const scrollPosition = window.pageYOffset;
@@ -28,3 +26,12 @@ glitchHeaders.forEach(header => {
         header.classList.remove('glitch-active');
     });
 });
+
+// Hintergrundanimationen initialisieren
+const produkteCanvas = document.getElementById('produkte-canvas');
+const kontaktCanvas = document.getElementById('kontakt-canvas');
+
+if (produkteCanvas || kontaktCanvas) {
+    // Initialisiere Partikel oder andere Effekte für den jeweiligen Canvas
+    // Hier können Sie zusätzliche Animationen für die Hintergründe hinzufügen
+}
