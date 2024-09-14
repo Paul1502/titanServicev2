@@ -484,11 +484,6 @@ header nav ul li a:hover::after {
     animation: slideUp 1s ease;
 }
 
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(50px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
 .audio-controls {
     display: flex;
     align-items: center;
@@ -529,6 +524,40 @@ header nav ul li a:hover::after {
     margin-top: 15px;
     background: #0b0c10;
     border-radius: 10px;
+}
+
+/* Playlist */
+#playlist {
+    margin-top: 20px;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #0b0c10;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#playlist-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#playlist-list li {
+    padding: 10px;
+    color: #c5c6c7;
+    cursor: pointer;
+    border-bottom: 1px solid #1f2833;
+    transition: background-color 0.3s ease;
+}
+
+#playlist-list li:hover {
+    background-color: #1f2833;
+    color: #66fcf1;
+}
+
+#playlist-list li.active {
+    background-color: #45a29e;
+    color: #fff;
 }
 
 /* Footer */
