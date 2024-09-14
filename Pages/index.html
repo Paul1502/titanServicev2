@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titan-Service - Innovative Cyber Security Lösungen</title>
+    <meta name="description" content="Erleben Sie die modernsten Cyber Security Lösungen mit atemberaubenden Animationen und Effekten.">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Schriftarten -->
+    <link rel="preload" href="fonts/Orbitron.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/Roboto.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+    <!-- Maus-Effekte -->
+    <div id="mouse-circle"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="Titan-Service Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#products">Produkte</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+                <li><a href="#" class="join-discord">Join Discord</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero-content">
+            <h1>Titan-Service</h1>
+            <p>Innovative Cyber Security Lösungen</p>
+        </div>
+    </section>
+
+    <!-- Produkte Sektion -->
+    <section id="products">
+        <div class="product">
+            <img src="images/product1.png" alt="Discord Cloner">
+            <div class="product-info">
+                <h2>Discord Cloner</h2>
+                <p>Klonen Sie Discord-Server und -Kanäle mit Leichtigkeit...</p>
+            </div>
+        </div>
+        <!-- Weitere Produkte -->
+    </section>
+
+    <!-- Audio Player -->
+    <div id="audio-player">
+        <div class="controls">
+            <button id="prev-btn">⏮</button>
+            <button id="play-btn">▶️</button>
+            <button id="next-btn">⏭</button>
+            <input type="range" id="volume-slider" min="0" max="1" step="0.01">
+        </div>
+        <div id="song-info">Songname</div>
+        <canvas id="visualizer"></canvas>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <p>&copy; 2023 Titan-Service. Alle Rechte vorbehalten.</p>
+        <p>
+            <a href="#">Impressum</a> |
+            <a href="#">Datenschutz</a>
+        </p>
+    </footer>
+
+    <!-- Skripte -->
+    <script src="js/three.min.js"></script>
+    <script src="js/gsap.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
