@@ -1,8 +1,11 @@
 const theme = {
   colors: {
-    primary: '#00FFFF', // Neonblau
-    secondary: '#FF00FF', // Neonpink
-    accent: '#00FF00', // Neongrün
+    background: '#000000',
+    primary: '#00FFFF',
+    secondary: '#FF00FF',
+    accent: '#00FF00',
+    text: '#FFFFFF',
+    mutedText: '#CCCCCC',
   },
   fonts: {
     main: "'Roboto', sans-serif",
