@@ -1,160 +1,141 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap');
-
-* {
-    font-family: 'Poppins', sans-serif;
-    padding: 0;
+/* Allgemeine Einstellungen */
+body, html {
     margin: 0;
-    box-sizing: border-box;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: #0e0e0e;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 100vh;
     overflow: hidden;
 }
 
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #151F28;
-    color: #fff;
-    scroll-behavior: smooth;
-}
-
-#hero {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-}
-
-h1 {
-    font-size: 60px;
-    text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
-}
-
-#super-btn {
-    margin-top: 20px;
-    padding: 20px 40px;
-    background: linear-gradient(45deg, #00f0ff, #0077ff);
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 15px;
-    box-shadow: 0 0 30px #00f0ff, 0 0 40px #0077ff;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-#super-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 50px #00f0ff, 0 0 60px #0077ff;
-}
-
-/* Product Card Styles */
-#products {
-    padding: 50px;
-    text-align: center;
-    background: #1b1b1b;
-}
-
-#products h2 {
-    font-size: 50px;
-    margin-bottom: 60px;
-}
-
-.card {
-    position: relative;
-    width: 350px;
-    height: 400px;
-    margin: 20px;
-    border-radius: 20px;
-    background: #222;
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
-    display: inline-block;
-}
-
-.card:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 40px var(--clr), 0 0 80px var(--clr);
-}
-
-.card .circle {
+#particles-js {
     position: absolute;
     width: 100%;
     height: 100%;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-color: #0e0e0e;
 }
 
-.card .circle::before {
-    content: '';
-    position: absolute;
-    width: 350px;
-    height: 350px;
-    border-radius: 50%;
-    border: 8px solid var(--clr);
-    background: #191919;
-    transition: 0.5s;
-    filter: drop-shadow(0 0 30px var(--clr)) drop-shadow(0 0 60px var(--clr));
-}
-
-.card:hover .circle::before {
-    width: 100%;
-    height: 100%;
-    background: var(--clr);
-}
-
-.card .product_img {
+#logo {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    height: 300px;
-    transition: 0.5s ease-in-out;
+    transform: translate(-50%, -50%);
+    font-size: 5em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    z-index: 1;
+    animation: glitch 1s infinite;
 }
 
-.card:hover .product_img {
-    transform: translate(-50%, -50%) scale(1.1);
+/* Glitch-Effekt */
+@keyframes glitch {
+    0% {
+        text-shadow: 2px 2px red;
+    }
+    50% {
+        text-shadow: -2px -2px blue;
+    }
+    100% {
+        text-shadow: 2px -2px green;
+    }
 }
 
-.card .content {
-    position: absolute;
+/* Über uns Sektion */
+.about {
+    padding: 50px 20px;
+    background-color: #1a1a1a;
+}
+
+.about h2 {
+    font-size: 2.5em;
+    color: #00ffea;
+}
+
+.about p {
+    font-size: 1.2em;
+    color: #ccc;
+}
+
+/* Produktsektion */
+.products {
+    padding: 50px 20px;
+    background-color: #0e0e0e;
+}
+
+.product {
+    margin-bottom: 50px;
     opacity: 0;
-    visibility: hidden;
-    left: 20%;
-    transition: opacity 0.5s, visibility 0.5s;
-    padding: 20px;
+    transform: translateY(50px);
 }
 
-.card:hover .content {
-    opacity: 1;
-    visibility: visible;
-    left: 10%;
+.product h2 {
+    font-size: 2em;
+    color: #00ffea;
 }
 
-.card .content h2 {
-    font-size: 2.4em;
-    line-height: 1em;
-    color: #fff;
+.product p {
+    font-size: 1.2em;
+    color: #ccc;
 }
 
-.card .content p {
-    color: #bbb;
+/* Kontakt Sektion */
+.contact {
+    padding: 50px 20px;
+    background-color: #1a1a1a;
 }
 
-.card .content a {
-    background: #fff;
-    padding: 10px 20px;
-    border-radius: 10px;
+.contact h2 {
+    font-size: 2.5em;
+    color: #00ffea;
+}
+
+.contact p, .contact ul {
+    font-size: 1.2em;
+    color: #ccc;
+}
+
+.contact a {
+    color: #00ffea;
     text-decoration: none;
-    font-weight: 600;
-    color: #111;
+}
+
+.discord-button {
+    display: inline-block;
+    padding: 15px 30px;
+    margin-top: 20px;
+    background-color: #7289da;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.discord-button:hover {
+    background-color: #5b6eae;
+    transform: scale(1.05);
+}
+
+/* Audio Button */
+#audio-control {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #00ffea;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+#audio-control img {
+    width: 30px;
+    height: 30px;
 }
