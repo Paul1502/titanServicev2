@@ -1,10 +1,3 @@
-// Maus-Verfolger
-document.addEventListener('mousemove', (e) => {
-    const trail = document.getElementById('mouse-trail');
-    trail.style.left = e.clientX + 'px';
-    trail.style.top = e.clientY + 'px';
-});
-
 // Audio Player Elemente
 const playBtn = document.getElementById('play-btn');
 const prevBtn = document.getElementById('prev-btn');
@@ -32,6 +25,8 @@ fetch('audioFiles.json')
             audio.src = 'audios/' + audioFiles[currentSongIndex];
             songInfo.textContent = getSongName(audioFiles[currentSongIndex]);
             createPlaylist();
+            // Initialisieren der Audio Visualizer
+            setupAudioVisualizer();
         } else {
             console.error('Keine Audiodateien gefunden.');
         }
@@ -85,9 +80,6 @@ playBtn.addEventListener('click', () => {
     } else {
         audio.play();
         playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-        if (!audioContext) {
-            setupAudioVisualizer();
-        }
     }
     isPlaying = !isPlaying;
     saveAudioState();
@@ -181,7 +173,7 @@ function saveAudioState() {
 
 // Wiederherstellen des Audio-Status beim Laden der Seite
 window.addEventListener('load', () => {
-    if (sessionStorage.getItem('currentSongIndex')) {
+    if (audioFiles.length > 0 && sessionStorage.getItem('currentSongIndex') !== null) {
         currentSongIndex = parseInt(sessionStorage.getItem('currentSongIndex'));
         audio.src = 'audios/' + audioFiles[currentSongIndex];
         songInfo.textContent = getSongName(audioFiles[currentSongIndex]);
@@ -193,10 +185,9 @@ window.addEventListener('load', () => {
             audio.play();
             playBtn.innerHTML = '<i class="fas fa-pause"></i>';
             isPlaying = true;
-            if (!audioContext) {
-                setupAudioVisualizer();
-            }
         }
+
+        setupAudioVisualizer();
     }
 });
 
@@ -207,12 +198,12 @@ function initializeBackgroundEffects(canvas) {
     canvas.height = window.innerHeight;
 
     let particlesArray = [];
-    const numberOfParticles = (canvas.height * canvas.width) / 5000; // Erhöhte Partikeldichte
+    const numberOfParticles = (canvas.height * canvas.width) / 7000; // Erhöhte Partikeldichte
 
     const mouse = {
         x: null,
         y: null,
-        radius: 50 // Reduzierter Radius für kleinere Barriere
+        radius: 30 // Weiter verkleinerter Radius
     };
 
     window.addEventListener('mousemove', function(event) {
@@ -228,8 +219,8 @@ function initializeBackgroundEffects(canvas) {
     function Particle(x, y, directionX, directionY, size, color) {
         this.x = x;
         this.y = y;
-        this.directionX = directionX;
-        this.directionY = directionY;
+        this.directionX = directionX * 0.5;
+        this.directionY = directionY * 0.5;
         this.size = size;
         this.color = color;
     }
@@ -281,7 +272,7 @@ function initializeBackgroundEffects(canvas) {
             let y = (Math.random() * (canvas.height - size * 2)) + size * 2;
             let directionX = (Math.random() * 2) - 1;
             let directionY = (Math.random() * 2) - 1;
-            let color = 'rgba(102, 252, 241, 0.5)';
+            let color = 'rgba(102, 252, 241, 0.6)';
 
             particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
         }
