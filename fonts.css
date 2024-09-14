@@ -6,7 +6,8 @@
     font-style: normal;
 }
 
-/* Icon Fonts */
+/* Falls Sie eine eigene Icon-Schriftart verwenden, fügen Sie sie hier hinzu */
+/*
 @font-face {
     font-family: 'Icons';
     src: url('fonts/icons.woff2') format('woff2');
@@ -14,7 +15,6 @@
     font-style: normal;
 }
 
-/* Icon-Klassen */
 .icon-play::before {
     content: '\e001';
 }
@@ -23,39 +23,11 @@
     content: '\e002';
 }
 
-.icon-next::before {
-    content: '\e003';
-}
-
-.icon-previous::before {
-    content: '\e004';
-}
-
-.icon-facebook::before {
-    content: '\e005';
-}
-
-.icon-twitter::before {
-    content: '\e006';
-}
-
-.icon-instagram::before {
-    content: '\e007';
-}
-
-.icon-telegram::before {
-    content: '\e008';
-}
-
-.icon-email::before {
-    content: '\e009';
-}
-
-.icon-discord::before {
-    content: '\e00a';
-}
+... Weitere Icons ...
+*/
 
 /* Generelle Icon-Stile */
+/*
 [class^="icon-"], [class*=" icon-"] {
     font-family: 'Icons';
     font-style: normal;
@@ -67,3 +39,4 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+*/
