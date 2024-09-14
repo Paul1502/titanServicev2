@@ -1,7 +1,8 @@
-import React, { useRef, useEffect } from 'react';
+import React, { Suspense } from 'react';
 import styled from 'styled-components';
 import { Canvas } from '@react-three/fiber';
-import { Mesh } from 'three';
+import { Html, useProgress } from '@react-three/drei';
+import dynamic from 'next/dynamic';
 
 const HeroContainer = styled.section`
   width: 100%;
@@ -23,17 +24,28 @@ const Title = styled.h1`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: 4rem;
   margin: 0;
+  line-height: 1.2;
 `;
 
 const Subtitle = styled.p`
   font-size: 1.5rem;
+  color: ${({ theme }) => theme.colors.text};
 `;
+
+function Loader() {
+  const { progress } = useProgress();
+  return <Html center>{progress} % loaded</Html>;
+}
+
+const Scene = dynamic(() => import('./Scene'), { ssr: false });
 
 const HeroSection = () => {
   return (
     <HeroContainer>
-      <Canvas>
-        {/* 3D Animationen mit Three.js */}
+      <Canvas camera={{ position: [0, 0, 10] }}>
+        <Suspense fallback={<Loader />}>
+          <Scene />
+        </Suspense>
       </Canvas>
       <HeroContent>
         <Title>Titan-Service</Title>
