@@ -6,8 +6,6 @@
 }
 
 body {
-    margin: 0;
-    padding: 0;
     background-color: #0b0c10;
     color: #c5c6c7;
     font-family: 'Orbitron', sans-serif;
@@ -15,19 +13,11 @@ body {
     scroll-behavior: smooth;
 }
 
-/* Schriftarten */
-@font-face {
-    font-family: 'Orbitron';
-    src: url('fonts/Orbitron.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-
 /* Maus-Verfolger */
 #mouse-trail {
     position: fixed;
-    width: 15px;
-    height: 15px;
+    width: 10px; /* Reduzierte Größe */
+    height: 10px; /* Reduzierte Größe */
     background-color: #66fcf1;
     border-radius: 50%;
     pointer-events: none;
@@ -99,7 +89,6 @@ header nav ul li a:hover::after {
     font-weight: bold;
     box-shadow: 0 0 10px #66fcf1;
     animation: glow 2s infinite alternate;
-    transition: background 0.3s ease, color 0.3s ease;
 }
 
 .join-discord:hover {
@@ -476,7 +465,7 @@ header nav ul li a:hover::after {
     text-decoration: underline;
 }
 
-/* Music Player */
+/* Audio Player */
 #audio-player {
     position: fixed;
     bottom: 30px;
@@ -520,12 +509,16 @@ header nav ul li a:hover::after {
     font-size: 28px;
     cursor: pointer;
     transition: transform 0.2s ease, color 0.3s ease;
-    animation: rotate 2s infinite ease-in-out;
+    animation: rotate 2s infinite linear;
 }
 
 @keyframes rotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .audio-btn:hover {
@@ -533,8 +526,12 @@ header nav ul li a:hover::after {
     transform: scale(1.2);
 }
 
-/* Playlist and Song Info */
-#song-info {
+#volume-slider {
+    width: 120px;
+    accent-color: #66fcf1;
+}
+
+#audio-player #song-info {
     margin-top: 15px;
     font-size: 1rem;
     text-align: center;
@@ -551,6 +548,48 @@ header nav ul li a:hover::after {
     100% {
         text-shadow: 0 0 20px rgba(102, 252, 241, 1);
     }
+}
+
+#audio-visualizer {
+    width: 100%;
+    height: 80px;
+    margin-top: 15px;
+    background: #0b0c10;
+    border-radius: 10px;
+}
+
+/* Playlist */
+#playlist {
+    margin-top: 20px;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #0b0c10;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#playlist-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#playlist-list li {
+    padding: 10px;
+    color: #c5c6c7;
+    cursor: pointer;
+    border-bottom: 1px solid #1f2833;
+    transition: background-color 0.3s ease;
+}
+
+#playlist-list li:hover {
+    background-color: #1f2833;
+    color: #66fcf1;
+}
+
+#playlist-list li.active {
+    background-color: #45a29e;
+    color: #fff;
 }
 
 /* Footer */
