@@ -1,42 +1,13 @@
-/* Schriftarten */
+/* fonts.css */
+
 @font-face {
     font-family: 'Orbitron';
-    src: url('fonts/Orbitron.woff2') format('woff2');
+    src: url('fonts/Orbitron.woff2') format('woff2'),
+         url('fonts/Orbitron.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
-/* Falls Sie eine eigene Icon-Schriftart verwenden, fügen Sie sie hier hinzu */
-/*
-@font-face {
-    font-family: 'Icons';
-    src: url('fonts/icons.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+body {
+    font-family: 'Orbitron', sans-serif;
 }
-
-.icon-play::before {
-    content: '\e001';
-}
-
-.icon-pause::before {
-    content: '\e002';
-}
-
-... Weitere Icons ...
-*/
-
-/* Generelle Icon-Stile */
-/*
-[class^="icon-"], [class*=" icon-"] {
-    font-family: 'Icons';
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    display: inline-block;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-*/
