@@ -1,11 +1,11 @@
-// Maus-Effekte
+// Maus-Verfolger
 document.addEventListener('mousemove', (e) => {
     const trail = document.getElementById('mouse-trail');
     trail.style.left = e.clientX + 'px';
     trail.style.top = e.clientY + 'px';
 });
 
-// Hero Section Animation mit Partikeln
+// Hero Section Animation mit langsameren Partikeln
 const canvas = document.getElementById('hero-canvas');
 const ctx = canvas.getContext('2d');
 
@@ -13,7 +13,7 @@ let particlesArray = [];
 let mouse = {
     x: null,
     y: null,
-    radius: 150
+    radius: 120
 };
 
 window.addEventListener('mousemove', function(event){
@@ -24,8 +24,8 @@ window.addEventListener('mousemove', function(event){
 function Particle(x, y, directionX, directionY, size, color){
     this.x = x;
     this.y = y;
-    this.directionX = directionX;
-    this.directionY = directionY;
+    this.directionX = directionX * 0.3; // Geschwindigkeit verlangsamt
+    this.directionY = directionY * 0.3; // Geschwindigkeit verlangsamt
     this.size = size;
     this.color = color;
 }
@@ -33,7 +33,7 @@ function Particle(x, y, directionX, directionY, size, color){
 Particle.prototype.draw = function(){
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-    ctx.fillStyle = '#66fcf1';
+    ctx.fillStyle = this.color;
     ctx.fill();
 }
 
@@ -76,12 +76,12 @@ Particle.prototype.update = function(){
 function init(){
     particlesArray = [];
     let numberOfParticles = (canvas.height * canvas.width) / 9000;
-    for (let i = 0; i < numberOfParticles * 2; i++){
-        let size = (Math.random() * 5) + 1;
+    for (let i = 0; i < numberOfParticles * 1.5; i++){ // Weniger Partikel für bessere Performance
+        let size = (Math.random() * 3) + 1;
         let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
         let y = (Math.random() * ((innerHeight - size *2) - (size * 2)) + size * 2);
-        let directionX = (Math.random() * 5) - 2.5;
-        let directionY = (Math.random() * 5) - 2.5;
+        let directionX = (Math.random() * 2) - 1;
+        let directionY = (Math.random() * 2) - 1;
         let color = '#66fcf1';
 
         particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
@@ -108,7 +108,7 @@ function connect(){
             * (particlesArray[a].x - particlesArray[b].x))
             + ((particlesArray[a].y - particlesArray[b].y)
             * (particlesArray[a].y - particlesArray[b].y));
-            if (distance < (canvas.width/7) * (canvas.height/7)){
+            if (distance < (canvas.width/10) * (canvas.height/10)){
                 opacityValue = 1 - (distance/20000);
                 ctx.strokeStyle = 'rgba(102, 252, 241,' + opacityValue + ')';
                 ctx.lineWidth = 1;
@@ -172,30 +172,16 @@ const songInfo = document.getElementById('song-info');
 const visualizerCanvas = document.getElementById('audio-visualizer');
 const visualizerCtx = visualizerCanvas.getContext('2d');
 
-let audioFiles = [];
+let audioFiles = [
+    'song1.mp3',
+    'song2.mp3',
+    // Fügen Sie weitere Songs hinzu
+];
 let currentSongIndex = 0;
 let isPlaying = false;
 let audio = new Audio();
-
-fetch('audios/')
-.then(response => response.text())
-.then(data => {
-    const parser = new DOMParser();
-    const html = parser.parseFromString(data, 'text/html');
-    const links = html.querySelectorAll('a');
-    links.forEach(link => {
-        const href = link.getAttribute('href');
-        if(href.endsWith('.mp3')){
-            audioFiles.push(href);
-        }
-    });
-    loadSong(currentSongIndex);
-});
-
-function loadSong(index){
-    audio.src = 'audios/' + audioFiles[index];
-    songInfo.textContent = audioFiles[index].replace('.mp3', '');
-}
+audio.src = 'audios/' + audioFiles[currentSongIndex];
+songInfo.textContent = audioFiles[currentSongIndex].replace('.mp3', '');
 
 playBtn.addEventListener('click', () => {
     if(isPlaying){
@@ -213,7 +199,8 @@ playBtn.addEventListener('click', () => {
 
 prevBtn.addEventListener('click', () => {
     currentSongIndex = (currentSongIndex - 1 + audioFiles.length) % audioFiles.length;
-    loadSong(currentSongIndex);
+    audio.src = 'audios/' + audioFiles[currentSongIndex];
+    songInfo.textContent = audioFiles[currentSongIndex].replace('.mp3', '');
     if(isPlaying){
         audio.play();
     }
@@ -221,7 +208,8 @@ prevBtn.addEventListener('click', () => {
 
 nextBtn.addEventListener('click', () => {
     currentSongIndex = (currentSongIndex + 1) % audioFiles.length;
-    loadSong(currentSongIndex);
+    audio.src = 'audios/' + audioFiles[currentSongIndex];
+    songInfo.textContent = audioFiles[currentSongIndex].replace('.mp3', '');
     if(isPlaying){
         audio.play();
     }
@@ -248,12 +236,12 @@ function setupAudioVisualizer(){
     source.connect(analyser);
     analyser.connect(audioContext.destination);
 
-    analyser.fftSize = 256;
+    analyser.fftSize = 512;
     bufferLength = analyser.frequencyBinCount;
     dataArray = new Uint8Array(bufferLength);
 
-    visualizerCanvas.width = 300;
-    visualizerCanvas.height = 60;
+    visualizerCanvas.width = visualizerCanvas.offsetWidth;
+    visualizerCanvas.height = visualizerCanvas.offsetHeight;
 
     animateVisualizer();
 }
@@ -269,9 +257,13 @@ function animateVisualizer(){
     let x = 0;
 
     for(let i = 0; i < bufferLength; i++){
-        barHeight = dataArray[i] / 2;
+        barHeight = dataArray[i] / 1.5;
 
-        visualizerCtx.fillStyle = '#66fcf1';
+        const r = barHeight + (25 * (i/bufferLength));
+        const g = 250 * (i/bufferLength);
+        const b = 50;
+
+        visualizerCtx.fillStyle = `rgb(${r},${g},${b})`;
         visualizerCtx.fillRect(x, visualizerCanvas.height - barHeight, barWidth, barHeight);
 
         x += barWidth + 1;
